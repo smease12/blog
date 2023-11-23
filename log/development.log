@@ -65,3 +65,15 @@ Migrating to CreateArticles (20231123180302)
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for ::1 at 2023-11-23 13:26:31 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 10014)
+  Rendered layout layouts/application.html.erb (Duration: 40.9ms | Allocations: 47486)
+Completed 200 OK in 57ms (Views: 42.5ms | ActiveRecord: 1.2ms | Allocations: 57341)
+
+

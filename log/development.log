@@ -22,3 +22,22 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 205)
 
 
+Started GET "/articles" for ::1 at 2023-11-22 19:01:31 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 185)
+Started GET "/articles" for ::1 at 2023-11-22 19:01:31 -0500
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 396.6ms | Allocations: 128732)
+Completed 200 OK in 403ms (Views: 399.0ms | ActiveRecord: 0.0ms | Allocations: 132865)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 379.8ms | Allocations: 110443)
+Completed 200 OK in 381ms (Views: 380.4ms | ActiveRecord: 0.0ms | Allocations: 111342)
+
+

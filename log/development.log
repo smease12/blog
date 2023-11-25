@@ -78,3 +78,67 @@ Completed 200 OK in 57ms (Views: 42.5ms | ActiveRecord: 1.2ms | Allocations: 573
 
 
   [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for ::1 at 2023-11-25 12:18:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 9.0ms | Allocations: 10014)
+  Rendered layout layouts/application.html.erb (Duration: 38.7ms | Allocations: 44895)
+Completed 200 OK in 58ms (Views: 39.7ms | ActiveRecord: 1.8ms | Allocations: 54749)
+
+
+Started GET "/1" for ::1 at 2023-11-25 12:18:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/1"):
+  
+Started GET "/articles/1" for ::1 at 2023-11-25 12:18:56 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 134)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 2270)
+Completed 200 OK in 23ms (Views: 4.2ms | ActiveRecord: 0.2ms | Allocations: 9128)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-25 12:26:19 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 253)
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | Allocations: 36109)
+Completed 200 OK in 56ms (Views: 32.5ms | ActiveRecord: 1.5ms | Allocations: 57420)
+
+
+Started GET "/" for ::1 at 2023-11-25 12:26:28 -0500
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 653)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 2743)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.4ms | Allocations: 3070)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-25 12:26:31 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 11)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2113)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.1ms | Allocations: 2726)
+
+

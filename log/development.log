@@ -1011,3 +1011,164 @@ Processing by ArticlesController#show as TURBO_STREAM
 Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.1ms | Allocations: 4187)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddStatusToArticles (20231127020344)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "articles" ADD "status" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231127020344') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddStatusToComments (20231127020410)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "comments" ADD "status" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231127020410') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/articles/new" for ::1 at 2023-11-26 21:21:12 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 5.8ms | Allocations: 3350)
+  Rendered articles/new.html.erb within layouts/application (Duration: 6.2ms | Allocations: 3723)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | Allocations: 38217)
+Completed 200 OK in 51ms (Views: 32.0ms | ActiveRecord: 1.4ms | Allocations: 58428)
+
+
+Started GET "/" for ::1 at 2023-11-26 21:21:13 -0500
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1574)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 1673)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3021)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Articles</h1>
+
+<ul>
+	<% @articles.each do |article| %>
+	  <% unless article.archived? %>
+		<li>
+		<a href="/articles/<%= article.id %>">
+		<%= article.title %>
+		</li>
+	<% end %>
+</ul>
+
+<%= link_to "New Article", new_article_path %>
+):
+1:    <h1>Articles</h1>
+2:    
+3:    <ul>
+4:    	<% @articles.each do |article| %>
+5:    	  <% unless article.archived? %>
+6:    		<li>
+7:    		<a href="/articles/<%= article.id %>">
+8:    		<%= article.title %>
+9:    		</li>
+10:    	<% end %>
+11:    </ul>
+12:    
+13:    <%= link_to "New Article", new_article_path %>
+  
+app/views/articles/index.html.erb:15: syntax error, unexpected end-of-input
+Started GET "/" for ::1 at 2023-11-26 21:22:31 -0500
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1188)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1287)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1558)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>Articles</h1>
+
+<ul>
+	<% @articles.each do |article| %>
+	  <% unless article.archived? %>
+		<li>
+		<a href="/articles/<%= article.id %>">
+		<%= article.title %>
+		</li>
+	<% end %>
+</ul>
+
+<%= link_to "New Article", new_article_path %>
+):
+1:    <h1>Articles</h1>
+2:    
+3:    <ul>
+4:    	<% @articles.each do |article| %>
+5:    	  <% unless article.archived? %>
+6:    		<li>
+7:    		<a href="/articles/<%= article.id %>">
+8:    		<%= article.title %>
+9:    		</li>
+10:    	<% end %>
+11:    </ul>
+12:    
+13:    <%= link_to "New Article", new_article_path %>
+  
+app/views/articles/index.html.erb:15: syntax error, unexpected end-of-input
+Started GET "/" for ::1 at 2023-11-26 21:30:34 -0500
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 3710)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 17133)
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 1.1ms | Allocations: 19287)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-26 21:30:37 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.7ms | Allocations: 278)
+  Rendered comments/_form.html.erb (Duration: 3.0ms | Allocations: 1508)
+  Rendered articles/show.html.erb within layouts/application (Duration: 27.4ms | Allocations: 12430)
+  Rendered layout layouts/application.html.erb (Duration: 29.7ms | Allocations: 14348)
+Completed 200 OK in 36ms (Views: 29.6ms | ActiveRecord: 1.0ms | Allocations: 16837)
+
+
+Started GET "/articles/3" for ::1 at 2023-11-26 21:30:41 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 3]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.2ms | Allocations: 81)
+  Rendered comments/_form.html.erb (Duration: 2.3ms | Allocations: 829)
+  Rendered articles/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1680)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 3598)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 0.2ms | Allocations: 4207)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-26 21:31:09 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.2ms | Allocations: 81)
+  Rendered comments/_form.html.erb (Duration: 2.0ms | Allocations: 816)
+  Rendered articles/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1666)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 3584)
+Completed 200 OK in 11ms (Views: 8.5ms | ActiveRecord: 0.3ms | Allocations: 4188)
+
+

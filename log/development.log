@@ -647,3 +647,167 @@ Processing by ArticlesController#show as HTML
 Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.1ms | Allocations: 2820)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20231127011349)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "commenter" varchar, "body" text, "article_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_3bf61a60d3"
+FOREIGN KEY ("article_id")
+  REFERENCES "articles" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_comments_on_article_id" ON "comments" ("article_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231127011349') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2023-11-26 20:40:18 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 9715)
+  Rendered layout layouts/application.html.erb (Duration: 36.2ms | Allocations: 45597)
+Completed 200 OK in 58ms (Views: 37.7ms | ActiveRecord: 1.3ms | Allocations: 57073)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-26 20:40:21 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1662)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 1764)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+
+<ul>
+    <li><%= link_to "Edit", edit_article_path(@article) %></li>
+    <li><%= link_to "Destroy", article_path(@article), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+    } %></li>
+</ul>
+
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+  <% end %>
+
+<h2>Add a comment:</h2>
+<%= form_with model: [ @article, @article.comments.build ] 
+do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+):
+1:    <h1><%= @article.title %></h1>
+2:    
+3:    <p><%= @article.body %></p>
+4:    
+5:    <ul>
+6:        <li><%= link_to "Edit", edit_article_path(@article) %></li>
+7:        <li><%= link_to "Destroy", article_path(@article), data: {
+8:            turbo_method: :delete,
+9:            turbo_confirm: "Are you sure?"
+10:        } %></li>
+11:    </ul>
+12:    
+13:    <h2>Comments</h2>
+14:    <% @article.comments.each do |comment| %>
+15:      <p>
+16:        <strong>Commenter:</strong>
+17:        <%= comment.commenter %>
+18:      </p>
+19:    
+20:      <p>
+21:        <strong>Comment:</strong>
+22:        <%= comment.body %>
+23:      </p>
+24:      <% end %>
+25:    
+26:    <h2>Add a comment:</h2>
+27:    <%= form_with model: [ @article, @article.comments.build ] 
+28:    do |form| %>
+29:      <p>
+30:        <%= form.label :commenter %><br>
+31:        <%= form.text_field :commenter %>
+32:      </p>
+33:      <p>
+34:        <%= form.label :body %><br>
+35:        <%= form.text_area :body %>
+36:      </p>
+37:      <p>
+38:        <%= form.submit %>
+39:      </p>
+40:      <% end %>
+  
+app/views/articles/show.html.erb:28: syntax error, unexpected `do'
+app/views/articles/show.html.erb:42: syntax error, unexpected `end'
+Started GET "/articles/1" for ::1 at 2023-11-26 20:41:59 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered articles/show.html.erb within layouts/application (Duration: 24.0ms | Allocations: 16492)
+  Rendered layout layouts/application.html.erb (Duration: 30.7ms | Allocations: 29718)
+Completed 200 OK in 37ms (Views: 31.4ms | ActiveRecord: 1.5ms | Allocations: 35457)
+
+
+Started POST "/articles/1/comments" for ::1 at 2023-11-26 20:42:18 -0500
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"Me", "body"=>"This is a comment!"}, "commit"=>"Create Comment", "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mComment Create (0.8ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["commenter", "Me"], ["body", "This is a comment!"], ["article_id", 1], ["created_at", "2023-11-27 01:42:18.877658"], ["updated_at", "2023-11-27 01:42:18.877658"]]
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:4:in `create'
+Redirected to http://localhost:3000/articles/1
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms | Allocations: 4061)
+
+
+Started GET "/articles/1" for ::1 at 2023-11-26 20:42:18 -0500
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:14
+  Rendered articles/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1459)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 3411)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.1ms | Allocations: 4057)
+
+
